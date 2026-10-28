@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./ChatPanel.module.css";
 import { useAppStore } from "../../stores/useAppStore";
+import { useHealth } from "../../hooks/useHealth";
 import { sendChatMessage } from "../../lib/api";
 import { ChatMessageData } from "../../types/chat";
 import { CitationChip } from "./CitationChip";
@@ -9,16 +10,17 @@ const STARTERS = [
   "What is this page linking to?",
   "Which destinations are missing?",
   "What can we prove about this missing link?",
-  "What is still unknown?"
+  "What remains unverified in this sector?"
 ];
 
 export const ChatPanel: React.FC = () => {
   const { isChatOpen, setChatOpen, selectedNode } = useAppStore();
+  const { health } = useHealth();
   const [messages, setMessages] = useState<ChatMessageData[]>([
     {
       id: "welcome",
       sender: "assistant",
-      text: "Greetings. I am the local archive curator. Ask me about historical pages, observed hyperlink paths, or what is provable about missing destinations. I never invent lost history."
+      text: "Hello explorer! I am the Ghost Archivist. I explore exclusively from our indexed historical web snapshots, trace real hyperlink trails, and keep digital archaeology honest. If a destination is missing or unverified, I will tell you openly."
     }
   ]);
   const [input, setInput] = useState("");
@@ -56,7 +58,7 @@ export const ChatPanel: React.FC = () => {
         {
           id: `err_${Date.now()}`,
           sender: "assistant",
-          text: "Local inference failed or timed out. Please check that Ollama is running.",
+          text: "Local inference failed or timed out. Please verify Ollama is running locally on port 11434.",
           abstained: true
         }
       ]);
@@ -65,14 +67,27 @@ export const ChatPanel: React.FC = () => {
     }
   };
 
+  const activeModelDisplay = health?.model || "qwen3:4b";
+
   return (
     <aside className={styles.chatPanel}>
       <div className={styles.header}>
         <div className={styles.titleGroup}>
-          <span className={styles.title}>Local Curator</span>
-          <span className={styles.subtitle}>Open-weight Qwen3 • Loopback</span>
+          <div className={styles.title}>
+            <span>🔮</span>
+            <span>Ghost Archivist</span>
+          </div>
+          <div className={styles.subtitle}>
+            <span className={styles.statusPip} />
+            <span>MODEL: {activeModelDisplay} • 127.0.0.1</span>
+          </div>
         </div>
-        <button className={styles.closeBtn} onClick={() => setChatOpen(false)}>
+        <button
+          className={styles.closeBtn}
+          onClick={() => setChatOpen(false)}
+          title="Close Ghost Archivist"
+          aria-label="Close Ghost Archivist"
+        >
           ✕
         </button>
       </div>
@@ -85,11 +100,20 @@ export const ChatPanel: React.FC = () => {
               m.sender === "user" ? styles.userMessage : styles.assistantMessage
             } ${m.abstained ? styles.abstained : ""}`}
           >
-            <div>{m.text}</div>
+            {m.abstained && (
+              <div className={styles.abstainedNotice}>
+                <span>👻</span>
+                <span>Evidentiary Gap (Honest Abstention)</span>
+              </div>
+            )}
+
+            <div className={styles.messageText}>{m.text}</div>
 
             {m.citations && m.citations.length > 0 && (
               <div className={styles.citationRow}>
-                <span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>Supporting Evidence:</span>
+                <span className={styles.citationLabel}>
+                  CITED EXCERPTS:
+                </span>
                 {m.citations.map((c) => (
                   <CitationChip key={c.id} citation={c} />
                 ))}
@@ -97,8 +121,10 @@ export const ChatPanel: React.FC = () => {
             )}
 
             {m.latency_ms && (
-              <div style={{ fontSize: "0.65rem", color: "var(--text-muted)", alignSelf: "flex-end" }}>
-                {m.latency_ms}ms
+              <div className={styles.metaRow}>
+                <span>Local Inference</span>
+                <span>•</span>
+                <span>{m.latency_ms}ms</span>
               </div>
             )}
           </div>
@@ -106,15 +132,15 @@ export const ChatPanel: React.FC = () => {
 
         {loading && (
           <div className={`${styles.message} ${styles.assistantMessage}`}>
-            <span style={{ fontStyle: "italic", color: "var(--text-muted)" }}>
-              Retrieving evidence and consulting local model...
+            <span className={styles.thinkingText}>
+              Consulting local FTS5 archive &amp; {activeModelDisplay}...
             </span>
           </div>
         )}
       </div>
 
       <div className={styles.starters}>
-        <span className={styles.startersLabel}>Suggested Queries</span>
+        <span className={styles.startersLabel}>Field Journal Prompts</span>
         <div className={styles.starterList}>
           {STARTERS.map((s, idx) => (
             <button
@@ -137,7 +163,7 @@ export const ChatPanel: React.FC = () => {
       >
         <input
           className={styles.inputField}
-          placeholder={selectedNode ? `Ask about ${selectedNode.label}...` : "Ask about early web history..."}
+          placeholder={selectedNode ? `Ask about ${selectedNode.label}...` : "Ask about early-web links and archives..."}
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
