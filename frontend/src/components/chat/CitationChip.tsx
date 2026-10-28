@@ -14,9 +14,9 @@ export const CitationChip: React.FC<CitationChipProps> = ({ citation }) => {
     <button
       className={styles.chip}
       onClick={() => setActiveCitation(citation)}
-      title={`Open supporting evidence: ${citation.page_title}`}
+      title={`Open verified archival excerpt from: ${citation.page_title}`}
     >
-      [{citation.id}]
+      <span>[{citation.id}]</span>
     </button>
   );
 };
