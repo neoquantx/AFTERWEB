@@ -1,0 +1,24 @@
+{
+  "name": "afterweb-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AFTERWEB: The Dead Internet City - Local-first Web Archaeology",
+  "scripts": {
+    "dev": "./scripts/dev.sh",
+    "setup": "./scripts/setup_mac.sh",
+    "check": "./scripts/check.sh",
+    "frontend:dev": "npm run dev --prefix frontend",
+    "frontend:build": "npm run build --prefix frontend",
+    "frontend:test": "npm run test --prefix frontend",
+    "backend:test": "source backend/.venv/bin/activate && pytest backend/tests"
+  },
+  "keywords": [
+    "web-archaeology",
+    "threejs",
+    "react-three-fiber",
+    "ollama",
+    "local-ai",
+    "internet-archive"
+  ],
+  "license": "MIT"
+}

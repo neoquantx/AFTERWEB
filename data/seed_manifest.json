@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "generated_date": "2026-10-28",
+  "sites": [
+    {
+      "id": "site_spacejam_1996",
+      "slug": "spacejam-1996",
+      "title": "Space Jam (1996 Original Site)",
+      "domain": "spacejam.com",
+      "era_label": "1996",
+      "description": "Original promotional website for the 1996 Space Jam feature film, maintained as a frozen cultural artifact.",
+      "root_url": "https://www.spacejam.com/1996/",
+      "target_capture_timestamp": "19961220000000",
+      "capture_url": "https://web.archive.org/web/19961220154500/http://www.spacejam.com/1996/",
+      "district_color": "#E5AE55"
+    },
+    {
+      "id": "site_geocities_valley",
+      "slug": "geocities-siliconvalley",
+      "title": "GeoCities SiliconValley Neighborhood",
+      "domain": "geocities.com",
+      "era_label": "1997-1999",
+      "description": "Archived community homepages from GeoCities SiliconValley computing and tech enthusiast neighborhood.",
+      "root_url": "http://www.geocities.com/SiliconValley/1842/",
+      "target_capture_timestamp": "19990508000000",
+      "capture_url": "https://web.archive.org/web/19990508000000/http://www.geocities.com/SiliconValley/1842/",
+      "district_color": "#73C8AD"
+    },
+    {
+      "id": "site_early_directory",
+      "slug": "ncsa-whats-new",
+      "title": "NCSA Mosaic What's New Directory",
+      "domain": "ncsa.uiuc.edu",
+      "era_label": "1993-1994",
+      "description": "The definitive early-web directory chronicling newly announced websites as the World Wide Web was born.",
+      "root_url": "http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/Docs/whats-new.html",
+      "target_capture_timestamp": "19970101000000",
+      "capture_url": "https://web.archive.org/web/19970101000000/http://www.ncsa.uiuc.edu/SDG/Software/Mosaic/Docs/whats-new.html",
+      "district_color": "#B89CFF"
+    }
+  ]
+}

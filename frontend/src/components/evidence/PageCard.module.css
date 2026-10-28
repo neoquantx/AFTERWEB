@@ -1,0 +1,61 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.metaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+}
+
+.metaLabel {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.metaValue {
+  font-family: var(--font-mono);
+  color: var(--text-strong);
+  word-break: break-all;
+}
+
+.statusPill {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  background: rgba(115, 200, 173, 0.2);
+  color: var(--captured);
+}
+
+.actionBtn {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: var(--bg-2);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-strong);
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.actionBtn:hover {
+  background: var(--observed);
+  color: var(--bg-0);
+}

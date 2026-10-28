@@ -1,0 +1,45 @@
+.banner {
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.4rem 1.5rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+}
+
+.statuses {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot.green {
+  background-color: var(--captured);
+}
+
+.dot.yellow {
+  background-color: var(--observed);
+}
+
+.dot.red {
+  background-color: var(--danger);
+}
+
+.privacyBadge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--captured);
+}

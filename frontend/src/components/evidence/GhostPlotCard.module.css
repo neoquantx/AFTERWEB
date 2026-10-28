@@ -1,0 +1,62 @@
+.ghostCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  border-left: 3px solid var(--missing);
+  padding-left: 1rem;
+}
+
+.heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--missing);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notice {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  background: rgba(154, 162, 177, 0.08);
+  padding: 0.6rem;
+  border-radius: 4px;
+}
+
+.metaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+}
+
+.metaLabel {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.metaValue {
+  font-family: var(--font-mono);
+  color: var(--text-strong);
+  word-break: break-all;
+}
+
+.askBtn {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: rgba(229, 174, 85, 0.15);
+  border: 1px solid var(--observed);
+  border-radius: 6px;
+  color: var(--observed);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.askBtn:hover {
+  background: var(--observed);
+  color: var(--bg-0);
+}

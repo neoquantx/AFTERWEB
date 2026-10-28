@@ -1,0 +1,19 @@
+:root {
+  --bg-0: #080B12;
+  --bg-1: #111722;
+  --bg-2: #1A2431;
+  --bg-card: rgba(17, 23, 34, 0.88);
+  
+  --text-strong: #F4F0E7;
+  --text-muted: #A7B1C0;
+  --border-subtle: rgba(167, 177, 192, 0.18);
+  
+  --observed: #E5AE55;
+  --captured: #73C8AD;
+  --missing: #9AA2B1;
+  --inferred: #B89CFF;
+  --danger: #FF817D;
+  
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}

@@ -1,0 +1,61 @@
+.header {
+  height: 54px;
+  background-color: var(--bg-1);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-strong);
+}
+
+.badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: var(--bg-2);
+  color: var(--observed);
+  border: 1px solid rgba(229, 174, 85, 0.3);
+  font-family: var(--font-mono);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toggleBtn {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-2);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.toggleBtn:hover {
+  color: var(--text-strong);
+  border-color: var(--observed);
+}
+
+.toggleBtn.active {
+  background: rgba(229, 174, 85, 0.15);
+  color: var(--observed);
+  border-color: var(--observed);
+}
