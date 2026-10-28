@@ -8,40 +8,53 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.brand}>
-        <span className={styles.logo}>AFTERWEB</span>
-        <span className={styles.badge}>Archaeology v1.0</span>
+        <div className={styles.ghostIcon}>👻</div>
+        <div className={styles.titleStack}>
+          <span className={styles.logo}>AFTERWEB</span>
+          <span className={styles.subtitle}>A Cozy Haunted Archive</span>
+        </div>
       </div>
 
       <div className={styles.controls}>
-        <button
-          className={`${styles.toggleBtn} ${viewMode === "3d" ? styles.active : ""}`}
-          onClick={() => setViewMode("3d")}
-          title="Switch to 3D Explorable City"
-        >
-          3D City
-        </button>
-        <button
-          className={`${styles.toggleBtn} ${viewMode === "2d" ? styles.active : ""}`}
-          onClick={() => setViewMode("2d")}
-          title="Switch to 2D Graph & List View"
-        >
-          2D Map / List
-        </button>
+        {/* View Switcher: 3D Village vs 2D Scrapbook */}
+        <div className={styles.toggleGroup}>
+          <button
+            className={`${styles.toggleBtn} ${viewMode === "3d" ? styles.active : ""}`}
+            onClick={() => setViewMode("3d")}
+            title="Explore 3D Haunted Village"
+          >
+            <span>🏡</span>
+            <span>3D Village</span>
+          </button>
+          <button
+            className={`${styles.toggleBtn} ${viewMode === "2d" ? styles.active : ""}`}
+            onClick={() => setViewMode("2d")}
+            title="View 2D Field Dossier"
+          >
+            <span>📜</span>
+            <span>2D Dossier</span>
+          </button>
+        </div>
 
+        {/* Ambient Motion Toggle */}
         <button
-          className={`${styles.toggleBtn} ${reducedMotion ? styles.active : ""}`}
+          className={`${styles.actionBtn} ${reducedMotion ? styles.activeMotion : ""}`}
           onClick={toggleReducedMotion}
-          title="Toggle Reduced Motion"
+          title="Toggle Ambient Scene Motion"
         >
-          {reducedMotion ? "Motion: Off" : "Motion: On"}
+          <span>{reducedMotion ? "⏸️" : "✨"}</span>
+          <span>{reducedMotion ? "Motion: Static" : "Motion: Gentle"}</span>
         </button>
 
+        {/* Curator Assistant Trigger */}
         <button
-          className={`${styles.toggleBtn} ${isChatOpen ? styles.active : ""}`}
+          className={`${styles.actionBtn} ${styles.curatorBtn} ${isChatOpen ? styles.activeCurator : ""}`}
           onClick={() => setChatOpen(!isChatOpen)}
-          title="Toggle Local Curator Assistant"
+          title="Toggle Local Ghost Archivist"
         >
-          Curator AI
+          <span>🔮</span>
+          <span>Ghost Archivist</span>
+          <span className={styles.statusPip} />
         </button>
       </div>
     </header>
