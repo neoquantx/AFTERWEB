@@ -4,7 +4,8 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--bg-0);
+  background-color: var(--bg-app);
+  position: relative;
 }
 
 .mainContent {
