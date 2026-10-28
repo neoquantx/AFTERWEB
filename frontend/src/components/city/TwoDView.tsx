@@ -38,7 +38,7 @@ export const TwoDView: React.FC = () => {
                   >
                     <div className={styles.cardTitle}>{node.title || node.label}</div>
                     <div className={styles.url}>{node.original_url}</div>
-                    <span className={`${styles.badge} ${isGhost ? styles.badge.ghost : styles.badge.captured}`}>
+                    <span className={`${styles.badge} ${isGhost ? styles.ghost : styles.captured}`}>
                       {node.lookup_state}
                     </span>
                   </button>
