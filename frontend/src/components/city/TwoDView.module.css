@@ -1,90 +1,215 @@
 .container {
   flex: 1;
   overflow-y: auto;
-  padding: 2rem;
-  background-color: var(--bg-0);
+  padding: 2rem 2.5rem;
+  background-color: var(--bg-app);
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  color: var(--text-primary);
+}
+
+.loadingState,
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  height: 240px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.introBanner {
+  background: var(--bg-surface-warm);
+  border: 1px solid var(--border-card);
+  border-left: 5px solid var(--observed);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: var(--shadow-card);
 }
 
 .heading {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
   color: var(--text-strong);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.subheading {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
 }
 
 .districtSection {
-  background: var(--bg-1);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
+  background: var(--bg-surface-warm);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.districtHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.75rem;
 }
 
 .districtTitle {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-strong);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.districtIcon {
+  font-size: 1.25rem;
+}
+
+.districtMeta {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.counts {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.districtEra {
+  font-size: 0.72rem;
+  font-weight: 700;
   color: var(--observed);
+  background: var(--observed-soft);
+  border: 1px solid var(--observed-border);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
 }
 
 .card {
-  background: var(--bg-2);
+  background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  padding: 1rem;
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  box-shadow: var(--shadow-sm);
 }
 
-.card:hover, .card:focus {
-  border-color: var(--observed);
-  outline: none;
+.card:hover, .card:focus-visible {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
 }
 
-.card.ghost {
-  border-style: dashed;
-  border-color: var(--missing);
+.cottageCard:hover {
+  border-color: var(--captured-border);
+  background: var(--bg-mint-subtle);
 }
 
-.cardTitle {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-  color: var(--text-strong);
+.ghostCard:hover {
+  border-color: var(--ghost-border);
+  background: var(--bg-lavender-subtle);
 }
 
-.url {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.selected {
+  border-color: var(--observed) !important;
+  box-shadow: 0 0 0 3px var(--observed-soft), var(--shadow-card) !important;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .badge {
-  display: inline-block;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  padding: 0.15rem 0.4rem;
-  border-radius: 3px;
-  margin-top: 0.5rem;
-  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
 }
 
-.badge.captured {
-  background: rgba(115, 200, 173, 0.2);
+.capturedBadge {
+  background: var(--captured-soft);
   color: var(--captured);
+  border: 1px solid var(--captured-border);
 }
 
-.badge.ghost {
-  background: rgba(154, 162, 177, 0.2);
-  color: var(--missing);
+.ghostBadge {
+  background: var(--ghost-soft);
+  color: var(--ghost);
+  border: 1px solid var(--ghost-border);
+}
+
+.timestampBadge {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-strong);
+  line-height: 1.35;
+}
+
+.url {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  word-break: break-all;
+  line-height: 1.4;
+  font-family: var(--font-mono);
+  background: var(--bg-surface-soft);
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.routesPreview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 0.6rem;
+  margin-top: 0.2rem;
+}
+
+.routesLabel {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.routesCount {
+  font-size: 0.72rem;
+  color: var(--observed);
+  font-weight: 700;
 }
