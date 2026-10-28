@@ -2,39 +2,119 @@
   position: absolute;
   bottom: 1.5rem;
   left: 1.5rem;
-  background: var(--bg-card);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 0.8rem 1.2rem;
+  background: rgba(255, 253, 249, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
   font-size: 0.8rem;
   z-index: 10;
   display: flex;
   flex-direction: column;
+  gap: 0.65rem;
+  box-shadow: var(--shadow-card);
+  max-width: 310px;
+  transition: all 0.25s ease;
+}
+
+.legend.collapsed {
+  padding: 0.55rem 0.9rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
+.bookIcon {
+  font-size: 1rem;
+}
+
 .title {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-strong);
-  margin-bottom: 0.2rem;
+  letter-spacing: 0.02em;
+  font-size: 0.82rem;
+  font-family: var(--font-sans);
+}
+
+.toggleBtn {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.6rem;
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  color: var(--text-muted);
+  gap: 0.75rem;
+  color: var(--text-primary);
 }
 
-.swatch {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
+.itemIcon {
+  font-size: 1rem;
+  width: 22px;
+  text-align: center;
+  display: inline-block;
 }
 
-.lineSwatch {
-  width: 20px;
-  height: 3px;
-  background-color: var(--observed);
+.labelCaptured {
+  color: var(--captured);
+  font-size: 0.8rem;
+}
+
+.labelGhost {
+  color: var(--ghost);
+  font-size: 0.8rem;
+}
+
+.labelPath {
+  color: var(--observed);
+  font-size: 0.8rem;
+}
+
+.labelGhostTrail {
+  color: var(--ghost);
+  font-size: 0.8rem;
+}
+
+.subtext {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  line-height: 1.25;
+}
+
+.note {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  background: var(--bg-lavender-subtle);
+  border: 1px solid var(--ghost-border);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.6rem;
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
 }
