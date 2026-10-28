@@ -3,16 +3,43 @@ node_modules/
 .pnp
 .pnp.js
 
-# Python Virtual Environment & Caches
+# Frontend Build Outputs & Caches
+dist/
+dist-ssr/
+build/
+.vite/
+*.tsbuildinfo
+
+# Package Manager Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Python Virtual Environments & Caches
 .venv/
 venv/
 ENV/
+env/
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Test & Coverage Outputs
+coverage/
+*.lcov
+.nyc_output/
+.coverage
+.coverage.*
+htmlcov/
 
 # Local Database, Archive Cache & User Data
 data/local/*
@@ -23,25 +50,30 @@ data/local/*
 *.db-journal
 *.db-wal
 
-# Build outputs
-dist/
-build/
-*.egg-info/
-
-# Environment and Secrets
+# Environment Variables & Secrets
 .env
 .env.local
 .env.*.local
 *.pem
+*.key
+*.cert
 
-# IDE & OS
+# IDE & OS Artifacts
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 .idea/
 .vscode/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
-# Ollama & Model Weights (if saved locally)
+# Model Weights & Binaries
 *.gguf
 *.bin
 models/
