@@ -42,7 +42,16 @@ class OllamaClient:
         model: Optional[str] = None
     ) -> Optional[str]:
         """Send inference request to local Ollama API."""
-        target_model = model or settings.OLLAMA_MODEL
+        target_model = model
+        if not target_model:
+            readiness = await self.check_readiness()
+            available_models = readiness.get("models", [])
+            if any(settings.OLLAMA_MODEL in m for m in available_models):
+                target_model = settings.OLLAMA_MODEL
+            elif any(settings.OLLAMA_FALLBACK_MODEL in m for m in available_models):
+                target_model = settings.OLLAMA_FALLBACK_MODEL
+            else:
+                target_model = settings.OLLAMA_MODEL
         payload = {
             "model": target_model,
             "messages": [
@@ -52,7 +61,7 @@ class OllamaClient:
             "stream": False,
             "options": {
                 "temperature": 0.2,
-                "num_predict": 512
+                "num_predict": 1024
             }
         }
 
@@ -61,7 +70,19 @@ class OllamaClient:
                 res = await client.post(f"{self.base_url}/api/chat", json=payload)
                 if res.status_code == 200:
                     data = res.json()
-                    return data.get("message", {}).get("content", "").strip()
+                    msg = data.get("message", {})
+                    raw_content = msg.get("content", "").strip()
+
+                    # Strip reasoning tags if present in output (e.g. Qwen3 / DeepSeek)
+                    if "</think>" in raw_content:
+                        raw_content = raw_content.split("</think>")[-1].strip()
+
+                    # If content is empty but model put output in thinking field
+                    if not raw_content and msg.get("thinking"):
+                        raw_content = msg.get("thinking", "").strip()
+
+                    return raw_content if raw_content else None
                 return None
-        except Exception:
+        except Exception as e:
+            print(f"[Ollama Error] {type(e).__name__}: {e}")
             return None
