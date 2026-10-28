@@ -1,19 +1,24 @@
 .chip {
   display: inline-flex;
   align-items: center;
+  gap: 0.2rem;
   margin: 0 0.2rem;
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-  background: rgba(229, 174, 85, 0.2);
-  border: 1px solid rgba(229, 174, 85, 0.4);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--observed-soft);
+  border: 1px dashed var(--observed);
   color: var(--observed);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  vertical-align: baseline;
 }
 
 .chip:hover {
   background: var(--observed);
-  color: var(--bg-0);
+  color: #ffffff;
+  border-style: solid;
+  transform: translateY(-1px);
 }
