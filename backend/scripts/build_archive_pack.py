@@ -1,7 +1,12 @@
 import asyncio
 import json
 import uuid
+import sys
 from pathlib import Path
+
+# Ensure backend root is on sys.path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from app.db.database import init_db, get_db_connection
 from app.services.archive_client import ArchiveClient
 from app.services.extractor import extract_html_content
