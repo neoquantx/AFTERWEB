@@ -5,15 +5,25 @@ from app.db.database import get_db_connection
 from app.models.schemas import Citation
 
 
+STOP_WORDS = {
+    "a", "about", "an", "and", "are", "as", "at", "be", "by", "for", "from",
+    "how", "i", "in", "is", "it", "of", "on", "or", "that", "the", "this",
+    "to", "was", "what", "when", "where", "which", "who", "why", "will", "with"
+}
+
+
 def clean_fts_query(query_str: str) -> str:
-    """Sanitize and prepare a query string for SQLite FTS5 MATCH."""
-    # Strip non-alphanumeric characters, keeping spaces
+    """Sanitize and prepare a query string for SQLite FTS5 MATCH, filtering out common stopwords."""
     cleaned = re.sub(r"[^\w\s]", " ", query_str).strip()
     words = cleaned.split()
     if not words:
         return ""
-    # Search for words with OR or individual prefixes
-    return " OR ".join(f'"{word}"*' for word in words[:10])
+
+    content_words = [w for w in words if w.lower() not in STOP_WORDS]
+    # If all words were stopwords, fall back to non-stopword or first word
+    target_words = content_words if content_words else words
+
+    return " OR ".join(f'"{word}"*' for word in target_words[:8])
 
 
 def search_evidence(
