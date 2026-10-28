@@ -8,7 +8,8 @@ export const ReadinessBanner: React.FC = () => {
   if (loading) {
     return (
       <div className={styles.banner}>
-        <span>Checking local subsystem status...</span>
+        <span className={styles.loadingText}>Connecting to local archive engine...</span>
+        <span className={styles.privacyTag}>🔒 Local-First Digital Archive</span>
       </div>
     );
   }
@@ -18,33 +19,36 @@ export const ReadinessBanner: React.FC = () => {
       <div className={styles.banner}>
         <div className={styles.statuses}>
           <div className={styles.item}>
-            <span className={`${styles.dot} ${styles.red}`} />
-            <span>FastAPI Backend: Unreachable</span>
+            <span className={`${styles.dot} ${styles.dotRed}`} />
+            <span>Archive Server: Offline (127.0.0.1:8000)</span>
           </div>
         </div>
-        <span className={styles.privacyBadge}>Offline Safe</span>
+        <span className={styles.privacyTag}>Offline Mode</span>
       </div>
     );
   }
+
+  const modelStatusClass = health.model_available ? styles.dotGreen : styles.dotYellow;
 
   return (
     <div className={styles.banner}>
       <div className={styles.statuses}>
         <div className={styles.item}>
-          <span className={`${styles.dot} ${health.api === "ok" ? styles.green : styles.red}`} />
-          <span>API: 127.0.0.1:8000</span>
+          <span className={`${styles.dot} ${health.api === "ok" ? styles.dotGreen : styles.dotRed}`} />
+          <span>Local Engine (127.0.0.1:8000)</span>
         </div>
         <div className={styles.item}>
-          <span className={`${styles.dot} ${health.database === "ready" ? styles.green : styles.yellow}`} />
-          <span>DB: SQLite FTS5 ({health.archive_pack})</span>
+          <span className={`${styles.dot} ${health.database === "ready" ? styles.dotGreen : styles.dotYellow}`} />
+          <span>FTS5 Archive Pack: {health.archive_pack || "surviving_web_v1"}</span>
         </div>
         <div className={styles.item}>
-          <span className={`${styles.dot} ${health.model_available ? styles.green : styles.yellow}`} />
+          <span className={`${styles.dot} ${modelStatusClass}`} />
           <span>Model: {health.model} ({health.ollama})</span>
         </div>
       </div>
-      <div className={styles.privacyBadge}>
-        🔒 100% Local Inference & Storage
+      <div className={styles.privacyTag}>
+        <span>🔒</span>
+        <span>100% Private • Local-Only Intelligence</span>
       </div>
     </div>
   );
