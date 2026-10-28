@@ -1,19 +1,76 @@
 :root {
-  --bg-0: #080B12;
-  --bg-1: #111722;
-  --bg-2: #1A2431;
-  --bg-card: rgba(17, 23, 34, 0.88);
-  
-  --text-strong: #F4F0E7;
-  --text-muted: #A7B1C0;
-  --border-subtle: rgba(167, 177, 192, 0.18);
-  
-  --observed: #E5AE55;
-  --captured: #73C8AD;
-  --missing: #9AA2B1;
-  --inferred: #B89CFF;
-  --danger: #FF817D;
-  
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  /* AFTERWEB 2.0: Cozy Haunted Village Palette */
+
+  /* Interface Surfaces (Warm, Paper, Storybook) */
+  --bg-app: #fcf8f2;
+  --bg-surface: #ffffff;
+  --bg-surface-soft: #f7f2ea;
+  --bg-surface-warm: #fffdf9;
+  --bg-lavender-subtle: #f3f0fb;
+  --bg-peach-subtle: #fff2eb;
+  --bg-mint-subtle: #edf8f3;
+
+  /* 3D World Canvas Atmosphere (Dreamy Twilight Dusk) */
+  --world-sky: #191c2b;
+  --world-horizon: #2a2842;
+  --world-ground: #222538;
+  --world-lantern: #fde8a0;
+
+  /* Text & Readability (Gentle Charcoal & Warm Inks) */
+  --text-strong: #2c2738;
+  --text-primary: #3d374d;
+  --text-secondary: #6e6780;
+  --text-muted: #9c94aa;
+  --text-on-dark: #fcf9f4;
+
+  /* Whimsical Truth States */
+  --captured: #48b88f;            /* Garden mint: Preserved digital cottage */
+  --captured-soft: #d2f2e5;
+  --captured-border: #9ee2c7;
+
+  --ghost: #9d87d9;               /* Friendly ghost lilac: Uncaptured lot */
+  --ghost-soft: #ece7fb;
+  --ghost-border: #c9bdf0;
+
+  --observed: #e8984e;            /* Pumpkin lantern amber: Real observed route */
+  --observed-soft: #fdecdb;
+  --observed-border: #f7c394;
+  --observed-path: #f7d78a;       /* Butter yellow pathway */
+
+  --danger: #e06d6d;
+  --danger-soft: #fce8e8;
+
+  /* Borders & Separation */
+  --border-subtle: #eee7db;
+  --border-card: #e5ded0;
+  --border-strong: #cbbfad;
+  --border-medium: #e5ded0;
+
+  /* Soft Ambient Shadows */
+  --shadow-sm: 0 2px 8px rgba(44, 39, 56, 0.05);
+  --shadow-card: 0 4px 16px rgba(44, 39, 56, 0.07), 0 1px 3px rgba(44, 39, 56, 0.04);
+  --shadow-float: 0 12px 32px rgba(44, 39, 56, 0.12);
+  --shadow-ghost: 0 8px 24px rgba(157, 135, 217, 0.25);
+
+  /* Roundedness */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* Typography */
+  --font-sans: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-serif: "Fraunces", "Georgia", serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace;
+
+  /* Backward Compatibility Aliases */
+  --bg-void: #fcf8f2;
+  --bg-0: #f7f2ea;
+  --bg-1: #ffffff;
+  --bg-2: #f7f2ea;
+  --missing: #9d87d9;
+  --missing-accent: #9d87d9;
+  --missing-dim: #ece7fb;
+  --captured-dim: #d2f2e5;
+  --observed-dim: #fdecdb;
 }
