@@ -33,10 +33,11 @@
 }
 
 .heading {
+  font-family: var(--font-headline);
   font-size: 1.35rem;
   font-weight: 800;
   color: var(--text-strong);
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -68,6 +69,7 @@
 }
 
 .districtTitle {
+  font-family: var(--font-headline);
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--text-strong);
@@ -150,8 +152,10 @@
 }
 
 .badge {
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 700;
+  letter-spacing: 0.03em;
   padding: 0.2rem 0.55rem;
   border-radius: var(--radius-pill);
 }
@@ -175,6 +179,7 @@
 }
 
 .cardTitle {
+  font-family: var(--font-headline);
   font-size: 1.05rem;
   font-weight: 800;
   color: var(--text-strong);
