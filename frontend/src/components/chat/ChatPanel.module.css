@@ -1,7 +1,7 @@
 .chatPanel {
   width: 420px;
   background: var(--bg-surface-warm);
-  border-left: 1px solid var(--border-subtle);
+  border-left: 1px solid var(--border-card);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -12,7 +12,7 @@
 
 .header {
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(182, 165, 232, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,20 +26,20 @@
 }
 
 .title {
-  font-size: 1rem;
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--text-strong);
-  letter-spacing: 0.02em;
-  font-family: var(--font-sans);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .subtitle {
-  font-size: 0.68rem;
-  color: var(--text-secondary);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--primary);
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -50,6 +50,7 @@
   height: 6px;
   border-radius: 50%;
   background-color: var(--captured);
+  box-shadow: 0 0 6px rgba(62, 102, 86, 0.6);
 }
 
 .closeBtn {
@@ -62,14 +63,14 @@
   align-items: center;
   justify-content: center;
   background: var(--bg-surface-soft);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .closeBtn:hover {
   color: var(--text-strong);
-  border-color: var(--border-strong);
+  border-color: var(--primary);
 }
 
 .messages {
@@ -86,7 +87,7 @@
   flex-direction: column;
   gap: 0.5rem;
   max-width: 90%;
-  padding: 0.9rem 1.15rem;
+  padding: 0.95rem 1.15rem;
   border-radius: var(--radius-md);
   font-size: 0.85rem;
   line-height: 1.55;
@@ -100,7 +101,7 @@
 
 .userMessage {
   align-self: flex-end;
-  background: var(--bg-peach-subtle);
+  background: var(--peach-bubble, #fdecdb);
   color: var(--text-strong);
   border: 1px solid var(--observed-border);
   border-bottom-right-radius: 4px;
@@ -123,7 +124,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.72rem;
+  font-family: var(--font-headline);
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--ghost);
   margin-bottom: 0.2rem;
@@ -136,11 +138,12 @@
   gap: 0.35rem;
   margin-top: 0.4rem;
   padding-top: 0.4rem;
-  border-top: 1px dashed var(--border-subtle);
+  border-top: 1px dashed rgba(182, 165, 232, 0.35);
 }
 
 .citationLabel {
-  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 700;
   color: var(--text-muted);
 }
@@ -149,7 +152,8 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.66rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
   color: var(--text-muted);
   margin-top: 0.2rem;
 }
@@ -161,16 +165,17 @@
 
 .starters {
   padding: 0.8rem 1.25rem 0.5rem;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(182, 165, 232, 0.25);
   background: var(--bg-surface);
 }
 
 .startersLabel {
-  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -182,28 +187,28 @@
 }
 
 .starterBtn {
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.75rem;
   border-radius: var(--radius-pill);
   background: var(--bg-surface-soft);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   color: var(--text-primary);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .starterBtn:hover {
-  background: var(--observed-soft);
-  border-color: var(--observed-border);
-  color: var(--observed);
+  background: var(--bg-surface-container);
+  border-color: var(--primary);
+  color: var(--primary);
   transform: translateY(-1px);
 }
 
 .inputForm {
   padding: 0.85rem 1.25rem 1.1rem;
   background: var(--bg-surface);
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(182, 165, 232, 0.25);
   display: flex;
   gap: 0.5rem;
 }
@@ -212,7 +217,7 @@
   flex: 1;
   padding: 0.65rem 1rem;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   background: var(--bg-surface-soft);
   color: var(--text-strong);
   font-size: 0.85rem;
@@ -222,17 +227,18 @@
 }
 
 .inputField:focus {
-  border-color: var(--observed);
+  border-color: var(--primary);
   background: #ffffff;
-  box-shadow: 0 0 0 3px var(--observed-soft);
+  box-shadow: 0 0 0 3px rgba(182, 165, 232, 0.3);
 }
 
 .sendBtn {
-  padding: 0.65rem 1.2rem;
+  padding: 0.65rem 1.25rem;
   border-radius: var(--radius-pill);
   border: none;
-  background: var(--observed);
-  color: #ffffff;
+  background: var(--secondary-container);
+  color: var(--text-strong);
+  font-family: var(--font-headline);
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
@@ -245,6 +251,6 @@
 }
 
 .sendBtn:not(:disabled):hover {
-  background: #dc8432;
+  background: #f7a059;
   transform: translateY(-1px);
 }
