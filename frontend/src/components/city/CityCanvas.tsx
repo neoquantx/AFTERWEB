@@ -41,7 +41,6 @@ export const CityCanvas: React.FC = () => {
   data.nodes.forEach((n) => nodeMap.set(n.id, n));
 
   const handleJumpToSector = (districtId: string) => {
-    // Find the main captured node in this district
     const targetNode = data.nodes.find((n) => n.site_id === districtId && n.node_type !== "ghost_plot");
     if (targetNode) {
       setSelectedNode(targetNode);
@@ -56,59 +55,64 @@ export const CityCanvas: React.FC = () => {
 
   return (
     <div className={styles.canvasContainer}>
-      {/* Floating Sector Quick-Jump HUD */}
+      {/* Floating Sector Quick-Jump HUD (Stitch Top-Left Village Sectors // Active Grid) */}
       <div className={styles.sectorHud}>
-        <span className={styles.sectorLabel}>VILLAGE QUARTERS:</span>
-        {data.districts.map((d) => (
-          <button
-            key={d.id}
-            className={styles.sectorBtn}
-            onClick={() => handleJumpToSector(d.id)}
-            title={`Visit ${d.title}`}
-          >
-            <span>{getDistrictIcon(d.id)}</span>
-            <span>{d.title.split("(")[0].trim()}</span>
-          </button>
-        ))}
+        <div className={styles.sectorHudHeader}>
+          <span className={styles.sectorLabel}>VILLAGE SECTORS // ACTIVE GRID</span>
+          <span className={styles.syncBadge}>
+            <span className={styles.syncDot} />
+            <span>Beacon Synced</span>
+          </span>
+        </div>
+        <div className={styles.sectorBtnGroup}>
+          {data.districts.map((d) => (
+            <button
+              key={d.id}
+              className={styles.sectorBtn}
+              onClick={() => handleJumpToSector(d.id)}
+              title={`Visit ${d.title}`}
+            >
+              <span className={styles.sectorIcon}>{getDistrictIcon(d.id)}</span>
+              <div className={styles.sectorTextGroup}>
+                <span className={styles.sectorTitle}>{d.title.split("(")[0].trim()}</span>
+                <span className={styles.sectorTag}>
+                  {d.id.includes("spacejam") ? "Cinema Cottage" : d.id.includes("geocities") ? "Personal Web" : "Foundational Root"}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
 
       <Canvas
-        camera={{ position: [0, 22, 36], fov: 46, near: 0.5, far: 250 }}
+        camera={{ position: [0, 18, 38], fov: 45, near: 0.1, far: 1000 }}
         dpr={[1, 1.5]}
         style={{ background: "#191c2b" }}
       >
-        {/* Dreamy Twilight Sky & Distance Fog */}
+        {/* Dreamy Twilight Sky & Fog (Stitch Spec: 0x191c2b, 0.015) */}
         <color attach="background" args={["#191c2b"]} />
-        <fog attach="fog" args={["#191c2b", 22, 120]} />
+        <fogExp2 attach="fog" args={["#191c2b", 0.015]} />
 
-        {/* Cinematic Atmospheric Lighting */}
-        {/* Soft dreamy ambient light */}
-        <ambientLight color="#383556" intensity={0.9} />
+        {/* Ambient Moon & Twilight Lighting (Stitch Spec) */}
+        <ambientLight color="#d5c9f5" intensity={0.85} />
 
-        {/* Warm Golden Moonlight / Twilight Sun */}
+        {/* Directional Moon Light */}
         <directionalLight
-          position={[25, 40, 22]}
-          intensity={1.3}
-          color="#fff1d6"
+          position={[15, 30, 20]}
+          intensity={1.2}
+          color="#e4d8ff"
           castShadow
         />
 
-        {/* Soft Lavender / Mint Fill Light */}
-        <directionalLight
-          position={[-30, 20, -15]}
-          intensity={0.5}
-          color="#b9e5d1"
-        />
-
-        {/* Cozy Warm Lantern point lights near the three village islands */}
-        <pointLight position={[-35, 8, 0]} color="#fde8a0" intensity={0.8} distance={28} />
-        <pointLight position={[0, 8, 0]} color="#fde8a0" intensity={0.8} distance={28} />
-        <pointLight position={[35, 8, 0]} color="#fde8a0" intensity={0.8} distance={28} />
+        {/* Warm Point Lights from Stitch Lighting Spec */}
+        <pointLight position={[-10, 4, 2]} color="#f5db91" intensity={1.8} distance={18} />
+        <pointLight position={[8, 4, 3]} color="#f2ae78" intensity={1.8} distance={18} />
+        <pointLight position={[0, 5, -8]} color="#b9e5d1" intensity={1.5} distance={16} />
 
         {/* Village Meadow Islands and Plinths */}
         <Ground />
 
-        {/* Floating Fairy Fireflies and Twilight Sparkles */}
+        {/* Floating Fairy Fireflies */}
         <DataMotes />
 
         {/* Cottages and Friendly Ghost Plots */}
@@ -121,7 +125,7 @@ export const CityCanvas: React.FC = () => {
           })}
         </group>
 
-        {/* Curved Hyperlink Pathways and Lantern Arcs */}
+        {/* Curved Hyperlink Pathways and Mid-air Lanterns */}
         <group>
           {data.routes.map((route) => {
             const src = nodeMap.get(route.source_node_id);
