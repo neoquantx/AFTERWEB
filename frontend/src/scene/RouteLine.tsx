@@ -1,6 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Line } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { CityRouteData, CityNodeData } from "../types/city";
 import { useAppStore } from "../stores/useAppStore";
 
@@ -11,9 +12,10 @@ interface RouteLineProps {
 }
 
 export const RouteLine: React.FC<RouteLineProps> = ({ route, sourceNode, targetNode }) => {
-  const { setSelectedRoute, selectedRoute } = useAppStore();
+  const { setSelectedRoute, selectedRoute, reducedMotion } = useAppStore();
   const isSelected = selectedRoute?.id === route.id;
   const isMissing = route.lookup_state === "not_found_in_query";
+  const lanternRef = useRef<THREE.Group>(null);
 
   // Create an elevated 3D parabolic catenary arc between source and target
   const { points, midPoint } = useMemo(() => {
@@ -34,15 +36,23 @@ export const RouteLine: React.FC<RouteLineProps> = ({ route, sourceNode, targetN
     return { points: pts, midPoint: mid };
   }, [sourceNode.position, targetNode.position, isMissing]);
 
-  // Cozy palette for routes:
-  // Captured: warm butter-yellow / pumpkin amber
-  // Missing (Ghost Plot): whimsical soft lilac dashed
-  // Selected: luminous warm ivory
+  // Gentle lantern sway animation from Stitch
+  useFrame((state) => {
+    if (lanternRef.current && !reducedMotion) {
+      lanternRef.current.position.y = midPoint.y + Math.sin(state.clock.elapsedTime * 1.5 + midPoint.x) * 0.12;
+      lanternRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 1.8 + midPoint.z) * 0.08;
+    }
+  });
+
+  // Stitch Color Palette for Hyperlink Trails:
+  // Captured: butter-yellow #f5db91
+  // Missing (Ghost Plot): whimsical soft lilac #b6a5e8 dashed
+  // Selected: luminous warm ivory #fff9f0
   const lineColor = isSelected
-    ? "#fffdf9"
+    ? "#fff9f0"
     : isMissing
     ? "#b6a5e8"
-    : "#f7d78a";
+    : "#f5db91";
 
   return (
     <group
@@ -54,23 +64,30 @@ export const RouteLine: React.FC<RouteLineProps> = ({ route, sourceNode, targetN
       <Line
         points={points}
         color={lineColor}
-        lineWidth={isSelected ? 4.5 : isMissing ? 2.2 : 3.2}
+        lineWidth={isSelected ? 4.8 : isMissing ? 2.4 : 3.4}
         dashed={isMissing}
         dashScale={2.0}
         dashSize={0.8}
         gapSize={0.5}
       />
 
-      {/* Tiny Floating Lantern at the Arc Zenith */}
-      <group position={[midPoint.x, midPoint.y, midPoint.z]}>
+      {/* Mid-air Floating Lantern (Stitch createLantern spec) */}
+      <group ref={lanternRef} position={[midPoint.x, midPoint.y, midPoint.z]}>
+        {/* Wooden cage */}
         <mesh>
-          <sphereGeometry args={[isSelected ? 0.22 : 0.15, 12, 12]} />
-          <meshStandardMaterial
-            color={isSelected ? "#fffdf9" : isMissing ? "#b6a5e8" : "#f5db91"}
-            emissive={isSelected ? "#fffdf9" : isMissing ? "#b6a5e8" : "#fde8a0"}
-            emissiveIntensity={isSelected ? 1.0 : 0.7}
-          />
+          <cylinderGeometry args={[0.22, 0.18, 0.44, 6]} />
+          <meshLambertMaterial color="#7c5a43" />
         </mesh>
+        {/* Glowing lantern bulb */}
+        <mesh>
+          <sphereGeometry args={[0.16, 8, 8]} />
+          <meshBasicMaterial color={isSelected ? "#ffffff" : isMissing ? "#b6a5e8" : "#ffea9f"} />
+        </mesh>
+        <pointLight
+          color={isMissing ? "#b6a5e8" : "#f5db91"}
+          intensity={isSelected ? 1.4 : 0.8}
+          distance={4}
+        />
       </group>
     </group>
   );
