@@ -1,76 +1,84 @@
 :root {
-  /* AFTERWEB 2.0: Cozy Haunted Village Palette */
+  /* ============================================================== */
+  /* Stitch Design System: "Cozy Haunted Web Diorama"               */
+  /* Asset: assets/947622d13e694656818f9a4cb3337a02               */
+  /* ============================================================== */
 
-  /* Interface Surfaces (Warm, Paper, Storybook) */
-  --bg-app: #fcf8f2;
+  /* Interface Surfaces (Warm Ivory Paperboard) */
+  --bg-app: #fff9f0;
   --bg-surface: #ffffff;
-  --bg-surface-soft: #f7f2ea;
-  --bg-surface-warm: #fffdf9;
-  --bg-lavender-subtle: #f3f0fb;
-  --bg-peach-subtle: #fff2eb;
+  --bg-surface-warm: #fff9f0;
+  --bg-surface-soft: #f7f1ff;
+  --bg-surface-container: #f2ebff;
+  --bg-surface-high: #ece4fe;
+  --bg-lavender-subtle: #f2ebff;
+  --bg-peach-subtle: #fdecdb;
   --bg-mint-subtle: #edf8f3;
 
-  /* 3D World Canvas Atmosphere (Dreamy Twilight Dusk) */
+  /* 3D Diorama Stage Atmosphere (Twilight Dusk) */
   --world-sky: #191c2b;
-  --world-horizon: #2a2842;
-  --world-ground: #222538;
-  --world-lantern: #fde8a0;
+  --world-horizon: #231f3d;
+  --world-ground: #181a28;
+  --world-lantern: #f5db91;
 
-  /* Text & Readability (Gentle Charcoal & Warm Inks) */
-  --text-strong: #2c2738;
-  --text-primary: #3d374d;
-  --text-secondary: #6e6780;
-  --text-muted: #9c94aa;
+  /* Typographic Inks (Charcoal Ink) */
+  --text-strong: #1d192b;
+  --text-primary: #393548;
+  --text-secondary: #49454f;
+  --text-muted: #797580;
   --text-on-dark: #fcf9f4;
 
-  /* Whimsical Truth States */
-  --captured: #48b88f;            /* Garden mint: Preserved digital cottage */
-  --captured-soft: #d2f2e5;
-  --captured-border: #9ee2c7;
+  /* Whimsical Truth States & Badges */
+  --captured: #3e6656;              /* Preserved digital cottage */
+  --captured-soft: #c0ecd8;
+  --captured-border: #8db8a5;
 
-  --ghost: #9d87d9;               /* Friendly ghost lilac: Uncaptured lot */
-  --ghost-soft: #ece7fb;
-  --ghost-border: #c9bdf0;
+  --ghost: #645592;                 /* Friendly ghost lilac */
+  --ghost-soft: #e8ddff;
+  --ghost-border: #b6a5e8;
 
-  --observed: #e8984e;            /* Pumpkin lantern amber: Real observed route */
-  --observed-soft: #fdecdb;
-  --observed-border: #f7c394;
-  --observed-path: #f7d78a;       /* Butter yellow pathway */
+  --observed: #865224;              /* Pumpkin lantern amber */
+  --observed-accent: #f2ae78;
+  --observed-soft: #ffdcc3;
+  --observed-border: #fdb881;
+  --observed-path: #f5db91;         /* Butter yellow pathway */
 
-  --danger: #e06d6d;
-  --danger-soft: #fce8e8;
+  --danger: #ba1a1a;
+  --danger-soft: #ffdad6;
 
   /* Borders & Separation */
-  --border-subtle: #eee7db;
-  --border-card: #e5ded0;
-  --border-strong: #cbbfad;
-  --border-medium: #e5ded0;
+  --border-subtle: #cac4d0;
+  --border-card: rgba(182, 165, 232, 0.35);
+  --border-strong: #797580;
+  --border-medium: rgba(182, 165, 232, 0.35);
 
-  /* Soft Ambient Shadows */
-  --shadow-sm: 0 2px 8px rgba(44, 39, 56, 0.05);
-  --shadow-card: 0 4px 16px rgba(44, 39, 56, 0.07), 0 1px 3px rgba(44, 39, 56, 0.04);
-  --shadow-float: 0 12px 32px rgba(44, 39, 56, 0.12);
-  --shadow-ghost: 0 8px 24px rgba(157, 135, 217, 0.25);
+  /* Elevation Shadows & Candlelight Glows */
+  --shadow-sm: 0 2px 8px rgba(25, 28, 43, 0.06);
+  --shadow-card: 0 8px 24px -4px rgba(25, 28, 43, 0.12), 0 2px 6px rgba(25, 28, 43, 0.04);
+  --shadow-float: 0 12px 32px -6px rgba(242, 174, 120, 0.22);
+  --shadow-ghost: 0 0 16px 2px rgba(182, 165, 232, 0.5);
+  --shadow-lantern: 0 0 16px 2px rgba(245, 219, 145, 0.55);
 
-  /* Roundedness */
+  /* Component Radiuses */
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
   --radius-pill: 9999px;
 
-  /* Typography */
-  --font-sans: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  --font-serif: "Fraunces", "Georgia", serif;
-  --font-mono: "JetBrains Mono", "SF Mono", Monaco, Consolas, monospace;
+  /* Typography (Stitch Standard: Epilogue, Plus Jakarta Sans, Space Mono) */
+  --font-headline: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI", serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", Monaco, Consolas, monospace;
 
   /* Backward Compatibility Aliases */
-  --bg-void: #fcf8f2;
-  --bg-0: #f7f2ea;
+  --bg-void: #fff9f0;
+  --bg-0: #f7f1ff;
   --bg-1: #ffffff;
-  --bg-2: #f7f2ea;
-  --missing: #9d87d9;
-  --missing-accent: #9d87d9;
-  --missing-dim: #ece7fb;
-  --captured-dim: #d2f2e5;
-  --observed-dim: #fdecdb;
+  --bg-2: #f2ebff;
+  --missing: #645592;
+  --missing-accent: #b6a5e8;
+  --missing-dim: #e8ddff;
+  --captured-dim: #c0ecd8;
+  --observed-dim: #ffdcc3;
 }
