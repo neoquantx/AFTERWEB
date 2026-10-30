@@ -2,7 +2,8 @@
   background: var(--bg-lavender-subtle);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0.35rem 1.5rem;
-  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 500;
   display: flex;
   align-items: center;
