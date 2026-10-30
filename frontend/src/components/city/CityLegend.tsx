@@ -8,56 +8,49 @@ export const CityLegend: React.FC = () => {
     <div className={`${styles.legend} ${collapsed ? styles.collapsed : ""}`}>
       <div className={styles.header} onClick={() => setCollapsed(!collapsed)}>
         <div className={styles.titleGroup}>
-          <span className={styles.bookIcon}>📖</span>
+          <span className={styles.bookIcon}>🧭</span>
           <span className={styles.title}>Village Field Guide</span>
         </div>
-        <button
-          className={styles.toggleBtn}
-          aria-label={collapsed ? "Expand guide" : "Collapse guide"}
-        >
-          {collapsed ? "▲" : "▼"}
-        </button>
+        <div className={styles.headerRight}>
+          <span className={styles.overlayTag}>Map Overlay</span>
+          <button
+            className={styles.toggleBtn}
+            aria-label={collapsed ? "Expand guide" : "Collapse guide"}
+          >
+            {collapsed ? "▲" : "▼"}
+          </button>
+        </div>
       </div>
 
       {!collapsed && (
         <div className={styles.content}>
           <div className={styles.item}>
-            <span className={styles.itemIcon}>🏡</span>
-            <div>
-              <strong className={styles.labelCaptured}>Preserved Cottage</strong>
-              <div className={styles.subtext}>Verified historical web snapshot exists</div>
+            <span className={styles.swatchMint} />
+            <div className={styles.itemInfo}>
+              <strong className={styles.labelCaptured}>🏡 Preserved Cottage</strong>
+              <span className={styles.subtext}>Living 1990s Web Archive</span>
             </div>
           </div>
 
           <div className={styles.item}>
-            <span className={styles.itemIcon}>👻</span>
-            <div>
-              <strong className={styles.labelGhost}>Friendly Ghost Plot</strong>
-              <div className={styles.subtext}>Uncaptured link target; missing from query</div>
+            <span className={styles.swatchLilac} />
+            <div className={styles.itemInfo}>
+              <strong className={styles.labelGhost}>👻 Friendly Ghost Plot</strong>
+              <span className={styles.subtext}>Uncaptured Hyperlink Lot</span>
             </div>
           </div>
 
           <div className={styles.item}>
-            <span className={styles.itemIcon}>🏮</span>
-            <div>
-              <strong className={styles.labelPath}>Lantern Trail</strong>
-              <div className={styles.subtext}>Real HTML &lt;a&gt; hyperlink route preserved</div>
+            <span className={styles.swatchAmber} />
+            <div className={styles.itemInfo}>
+              <strong className={styles.labelPath}>🏮 Lantern Trail</strong>
+              <span className={styles.subtext}>Extracted Pathway</span>
             </div>
           </div>
 
-          <div className={styles.item}>
-            <span className={styles.itemIcon}>┈┈</span>
-            <div>
-              <strong className={styles.labelGhostTrail}>Ghost Path</strong>
-              <div className={styles.subtext}>Hyperlink leading to an uncaptured lot</div>
-            </div>
-          </div>
-
-          <div className={styles.note}>
+          <div className={styles.hintRow}>
             <span>✨</span>
-            <span>
-              Absence is never fabricated. Lost destinations are marked by friendly ghosts, keeping history true.
-            </span>
+            <span>Mouse Drag / Scroll to Orbit &amp; Zoom</span>
           </div>
         </div>
       )}
