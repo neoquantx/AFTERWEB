@@ -11,6 +11,7 @@
   align-self: flex-start;
   padding: 0.28rem 0.65rem;
   border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
   background: var(--ghost-soft);
@@ -19,6 +20,7 @@
 }
 
 .heading {
+  font-family: var(--font-headline);
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-strong);
@@ -29,10 +31,10 @@
   font-size: 0.82rem;
   color: var(--text-primary);
   line-height: 1.5;
-  background: var(--bg-lavender-subtle);
+  background: var(--bg-surface-container);
   padding: 0.85rem 1rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--ghost-border);
+  border: 1px solid var(--border-card);
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -43,7 +45,9 @@
   align-items: center;
   gap: 0.35rem;
   color: var(--ghost);
+  font-family: var(--font-headline);
   font-size: 0.82rem;
+  font-weight: 700;
 }
 
 .notice p {
@@ -60,14 +64,15 @@
   flex-direction: column;
   gap: 0.25rem;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 0.8rem 0.95rem;
   box-shadow: var(--shadow-sm);
 }
 
 .metaLabel {
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -75,7 +80,8 @@
 }
 
 .metaValue {
-  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   color: var(--text-strong);
   word-break: break-all;
   line-height: 1.45;
@@ -89,18 +95,17 @@
   gap: 0.5rem;
   padding: 0.7rem 1.1rem;
   border-radius: var(--radius-pill);
-  background: var(--ghost-soft);
-  border: 1px solid var(--ghost-border);
-  color: var(--ghost);
+  background: var(--secondary-container);
+  border: 1px solid var(--observed-border);
+  color: var(--text-strong);
   font-weight: 700;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: var(--shadow-sm);
 }
 
 .askBtn:hover {
-  background: var(--ghost);
-  color: #ffffff;
+  background: #f7a059;
   transform: translateY(-1px);
 }
