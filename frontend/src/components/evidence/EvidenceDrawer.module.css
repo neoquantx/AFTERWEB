@@ -1,7 +1,7 @@
 .drawer {
   width: 380px;
   background: var(--bg-surface-warm);
-  border-left: 1px solid var(--border-subtle);
+  border-left: 1px solid var(--border-card);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -17,14 +17,15 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(182, 165, 232, 0.25);
   padding-bottom: 0.75rem;
 }
 
 .headerTitle {
-  font-size: 0.82rem;
+  font-family: var(--font-headline);
+  font-size: 0.86rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--text-strong);
   display: flex;
   align-items: center;
@@ -41,14 +42,15 @@
   align-items: center;
   justify-content: center;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .closeBtn:hover {
   color: var(--text-strong);
-  border-color: var(--border-strong);
+  border-color: var(--primary);
+  background: var(--bg-surface-container);
 }
 
 /* Meaningful Empty State */
@@ -62,25 +64,27 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--observed);
-  background: var(--observed-soft);
-  border: 1px solid var(--observed-border);
+  color: var(--primary);
+  background: var(--bg-surface-container);
+  border: 1px solid var(--border-card);
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-pill);
   align-self: flex-start;
 }
 
 .scannerTitle {
-  font-size: 1.18rem;
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-strong);
   line-height: 1.35;
 }
 
 .scannerDesc {
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: var(--text-secondary);
   line-height: 1.55;
 }
@@ -93,16 +97,17 @@
 }
 
 .quickJumpLabel {
-  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--text-secondary);
-  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
 }
 
 .quickJumpBtn {
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 0.75rem 0.95rem;
   display: flex;
@@ -140,14 +145,16 @@
 }
 
 .quickJumpTitle {
+  font-family: var(--font-headline);
   font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-strong);
 }
 
 .quickJumpSub {
-  font-size: 0.72rem;
-  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
   padding-left: 1.5rem;
 }
 
@@ -162,7 +169,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--observed);
   background: var(--observed-soft);
@@ -173,14 +181,15 @@
 }
 
 .routeAnchor {
-  font-size: 1.1rem;
+  font-family: var(--font-headline);
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-strong);
 }
 
 .routeField {
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-sm);
   padding: 0.65rem 0.8rem;
   display: flex;
@@ -189,6 +198,7 @@
 }
 
 .metaLabel {
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -196,7 +206,8 @@
 }
 
 .metaValue {
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   color: var(--text-primary);
   word-break: break-all;
   line-height: 1.4;
@@ -204,14 +215,14 @@
 
 .statusCaptured {
   color: var(--captured);
-  font-weight: 600;
-  font-size: 0.8rem;
+  font-weight: 700;
+  font-size: 0.78rem;
 }
 
 .statusMissing {
   color: var(--ghost);
-  font-weight: 600;
-  font-size: 0.8rem;
+  font-weight: 700;
+  font-size: 0.78rem;
 }
 
 /* Citation Highlight */
@@ -226,8 +237,9 @@
 
 .citationLabel {
   color: var(--observed);
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   margin-bottom: 0.4rem;
   display: flex;
   align-items: center;
