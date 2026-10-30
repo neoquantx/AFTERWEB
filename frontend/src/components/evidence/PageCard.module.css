@@ -11,6 +11,7 @@
   align-self: flex-start;
   padding: 0.28rem 0.65rem;
   border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
   background: var(--captured-soft);
@@ -19,6 +20,7 @@
 }
 
 .title {
+  font-family: var(--font-headline);
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-strong);
@@ -30,14 +32,15 @@
   flex-direction: column;
   gap: 0.25rem;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
   padding: 0.8rem 0.95rem;
   box-shadow: var(--shadow-sm);
 }
 
 .metaLabel {
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -45,10 +48,41 @@
 }
 
 .metaValue {
-  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   color: var(--text-strong);
   word-break: break-all;
   line-height: 1.45;
+}
+
+.provenanceBox {
+  background: var(--bg-surface-container);
+  border: 1px solid rgba(182, 165, 232, 0.4);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.provenanceTitle {
+  font-family: var(--font-headline);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.provenanceText {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.btnRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .actionBtn {
@@ -59,17 +93,18 @@
   padding: 0.65rem 1rem;
   border-radius: var(--radius-pill);
   background: var(--bg-surface);
-  border: 1px solid var(--border-card);
+  border: 1.5px solid var(--primary-container);
   color: var(--text-strong);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: var(--shadow-sm);
+  text-decoration: none;
 }
 
 .actionBtn:hover {
-  background: var(--bg-lavender-subtle);
-  border-color: var(--ghost-border);
+  background: var(--bg-surface-container);
+  border-color: var(--primary);
   transform: translateY(-1px);
 }
 
@@ -80,10 +115,10 @@
   gap: 0.5rem;
   padding: 0.7rem 1.1rem;
   border-radius: var(--radius-pill);
-  background: var(--observed-soft);
+  background: var(--secondary-container);
   border: 1px solid var(--observed-border);
-  color: var(--observed);
-  font-size: 0.84rem;
+  color: var(--text-strong);
+  font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -91,7 +126,68 @@
 }
 
 .askBtn:hover {
-  background: var(--observed);
-  color: #ffffff;
+  background: #f7a059;
   transform: translateY(-1px);
+}
+
+.trailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px dashed rgba(182, 165, 232, 0.35);
+  padding-top: 0.75rem;
+}
+
+.trailsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trailsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.trailItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.trailItem:hover {
+  border-color: var(--primary);
+  background: var(--bg-surface-soft);
+}
+
+.trailAnchor {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  max-width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trailBadgeCaptured {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--captured);
+  font-weight: 700;
+}
+
+.trailBadgeMissing {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--ghost);
+  font-weight: 700;
 }
