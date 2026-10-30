@@ -5,51 +5,44 @@ import { useAppStore } from "../stores/useAppStore";
 
 export const DataMotes: React.FC = () => {
   const { reducedMotion } = useAppStore();
-  const count = 140;
+  const count = 90;
   const meshRef = useRef<THREE.Points>(null);
 
-  const [positions, colors] = useMemo(() => {
+  const [positions, speeds] = useMemo(() => {
     const pos = new Float32Array(count * 3);
-    const col = new Float32Array(count * 3);
-
-    // Whimsical fairy firefly palette:
-    // Warm butter yellow (#f5db91), soft peach (#ffd6c2), dreamy lavender (#e9e2ff)
-    const butter = new THREE.Color("#f5db91");
-    const peach = new THREE.Color("#ffd6c2");
-    const lavender = new THREE.Color("#e9e2ff");
+    const spd: { vx: number; vy: number; vz: number; phase: number }[] = [];
 
     for (let i = 0; i < count; i++) {
-      // Scatter fireflies across the village sky volume
-      pos[i * 3] = (Math.random() - 0.5) * 120;
-      pos[i * 3 + 1] = Math.random() * 20 + 0.8;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 60;
+      pos[i * 3] = (Math.random() - 0.5) * 110;
+      pos[i * 3 + 1] = 1 + Math.random() * 20;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 55;
 
-      const r = Math.random();
-      const c = r < 0.6 ? butter : r < 0.85 ? peach : lavender;
-      col[i * 3] = c.r;
-      col[i * 3 + 1] = c.g;
-      col[i * 3 + 2] = c.b;
+      spd.push({
+        vx: (Math.random() - 0.5) * 0.02,
+        vy: (Math.random() - 0.5) * 0.03,
+        vz: (Math.random() - 0.5) * 0.02,
+        phase: Math.random() * Math.PI * 2
+      });
     }
 
-    return [pos, col];
+    return [pos, spd];
   }, [count]);
 
   useFrame((state, delta) => {
     if (reducedMotion || !meshRef.current) return;
-    const positionsAttr = meshRef.current.geometry.attributes.position;
-    const arr = positionsAttr.array as Float32Array;
+    const posArr = meshRef.current.geometry.attributes.position.array as Float32Array;
 
     for (let i = 0; i < count; i++) {
-      // Gently drift with a slight firefly wobble
-      arr[i * 3 + 1] += delta * 0.35;
-      arr[i * 3] += Math.sin(state.clock.elapsedTime * 0.8 + i) * 0.015;
+      // Gentle firefly float motion from Stitch
+      posArr[i * 3 + 1] += delta * 0.35 + Math.sin(state.clock.elapsedTime * 2.0 + speeds[i].phase) * 0.012;
+      posArr[i * 3] += Math.cos(state.clock.elapsedTime * 1.5 + speeds[i].phase) * 0.01;
 
       // Wrap if drifted too high
-      if (arr[i * 3 + 1] > 22) {
-        arr[i * 3 + 1] = 0.8;
+      if (posArr[i * 3 + 1] > 22) {
+        posArr[i * 3 + 1] = 1.0;
       }
     }
-    positionsAttr.needsUpdate = true;
+    meshRef.current.geometry.attributes.position.needsUpdate = true;
   });
 
   return (
@@ -59,16 +52,12 @@ export const DataMotes: React.FC = () => {
           attach="attributes-position"
           args={[positions, 3]}
         />
-        <bufferAttribute
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
       </bufferGeometry>
       <pointsMaterial
-        size={0.4}
-        vertexColors
+        color="#f5db91"
+        size={0.45}
         transparent
-        opacity={0.8}
+        opacity={0.88}
         sizeAttenuation
         depthWrite={false}
       />
