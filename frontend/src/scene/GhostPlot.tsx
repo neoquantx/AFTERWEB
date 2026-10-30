@@ -15,10 +15,10 @@ export const GhostPlot: React.FC<GhostPlotProps> = ({ node }) => {
   const isSelected = selectedNode?.id === node.id;
   const ghostGroupRef = useRef<THREE.Group>(null);
 
-  // Bobbing floating animation for the friendly little ghost
+  // Bobbing floating animation for the friendly little ghost (Stitch diorama logic)
   useFrame((state) => {
     if (ghostGroupRef.current && !reducedMotion) {
-      ghostGroupRef.current.position.y = 1.6 + Math.sin(state.clock.elapsedTime * 2.2 + node.position[0]) * 0.22;
+      ghostGroupRef.current.position.y = 1.7 + Math.sin(state.clock.elapsedTime * 2.2 + node.position[0]) * 0.25;
       ghostGroupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 1.2) * 0.2;
     }
   });
@@ -37,29 +37,26 @@ export const GhostPlot: React.FC<GhostPlotProps> = ({ node }) => {
       onPointerOut={() => setHovered(false)}
     >
       {/* ============================================================== */}
-      {/* 1. VACANT GARDEN LOT BASE & FAIRY RING                         */}
+      {/* 1. VACANT GARDEN LOT BASE (Tilled Soil Patch)                  */}
       {/* ============================================================== */}
       <mesh position={[0, 0.08, 0]}>
-        <cylinderGeometry args={[2.2, 2.4, 0.16, 16]} />
-        <meshStandardMaterial
-          color={isSelected ? "#3d3654" : "#2a2d42"}
-          roughness={0.9}
-        />
+        <cylinderGeometry args={[2.0, 2.2, 0.16, 16]} />
+        <meshLambertMaterial color="#5a3f37" />
       </mesh>
 
-      {/* Decorative Pebble & Mushroom Border */}
+      {/* Decorative Fairy Border Ring */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.18, 0]}>
-        <ringGeometry args={[2.1, 2.3, 24]} />
+        <ringGeometry args={[1.9, 2.1, 24]} />
         <meshBasicMaterial
-          color={isSelected ? "#b6a5e8" : hovered ? "#e9e2ff" : "#5d5478"}
+          color={isSelected ? "#b6a5e8" : hovered ? "#e9e2ff" : "#8a7ba8"}
           side={THREE.DoubleSide}
           transparent
           opacity={0.8}
         />
       </mesh>
 
-      {/* Little Pastel Garden Mushroom on Plot Corner */}
-      <group position={[1.4, 0.16, 1.2]}>
+      {/* Little Garden Mushroom on Corner */}
+      <group position={[1.3, 0.16, 1.1]}>
         <mesh position={[0, 0.2, 0]}>
           <cylinderGeometry args={[0.05, 0.08, 0.4, 8]} />
           <meshStandardMaterial color="#fff9f0" roughness={0.7} />
@@ -70,138 +67,125 @@ export const GhostPlot: React.FC<GhostPlotProps> = ({ node }) => {
         </mesh>
       </group>
 
+      {/* Weathered Wooden Signpost on Plot */}
+      <group position={[-1.1, 0, 0.7]}>
+        <mesh position={[0, 0.6, 0]}>
+          <cylinderGeometry args={[0.06, 0.07, 1.2, 8]} />
+          <meshLambertMaterial color="#7c5a43" />
+        </mesh>
+        <mesh position={[0, 1.1, 0]} rotation={[0, -0.3, 0]}>
+          <boxGeometry args={[0.55, 0.42, 0.08]} />
+          <meshLambertMaterial color="#8a674e" />
+        </mesh>
+      </group>
+
       {/* ============================================================== */}
-      {/* 2. ADORABLE FRIENDLY 3D GHOST ("GHOST IN THE MACHINE")         */}
+      {/* 2. ADORABLE FRIENDLY 3D GHOST (Exact Stitch Spec)              */}
       {/* ============================================================== */}
-      <group ref={ghostGroupRef} position={[0, 1.6, 0]}>
-        {/* Ghost Head (Smooth rounded sphere) */}
-        <mesh position={[0, 0.65, 0]}>
-          <sphereGeometry args={[0.55, 24, 24]} />
-          <meshStandardMaterial
-            color="#f1edfd"
-            roughness={0.2}
+      <group ref={ghostGroupRef} position={[0, 1.7, 0]}>
+        {/* Head */}
+        <mesh position={[0, 0.75, 0]}>
+          <sphereGeometry args={[0.58, 20, 20]} />
+          <meshPhongMaterial
+            color="#ffffff"
+            emissive="#d8d0f8"
+            emissiveIntensity={isSelected ? 0.65 : hovered ? 0.45 : 0.3}
+            transparent
+            opacity={0.9}
+            shininess={80}
+          />
+        </mesh>
+
+        {/* Skirt */}
+        <mesh position={[0, 0.22, 0]}>
+          <cylinderGeometry args={[0.55, 0.38, 0.85, 16, 1, true]} />
+          <meshPhongMaterial
+            color="#ffffff"
+            emissive="#d8d0f8"
+            emissiveIntensity={isSelected ? 0.6 : hovered ? 0.4 : 0.25}
             transparent
             opacity={0.85}
-            emissive="#b6a5e8"
-            emissiveIntensity={isSelected ? 0.6 : hovered ? 0.4 : 0.2}
+            shininess={80}
+            side={THREE.DoubleSide}
           />
         </mesh>
 
-        {/* Ghost Flowing Body & Skirt */}
-        <mesh position={[0, 0.1, 0]}>
-          <cylinderGeometry args={[0.52, 0.68, 0.85, 20]} />
-          <meshStandardMaterial
-            color="#f1edfd"
-            roughness={0.2}
-            transparent
-            opacity={0.82}
-            emissive="#b6a5e8"
-            emissiveIntensity={isSelected ? 0.6 : hovered ? 0.4 : 0.2}
-          />
+        {/* Floating Ghost Arms */}
+        <mesh position={[-0.52, 0.52, 0.16]}>
+          <sphereGeometry args={[0.18, 10, 10]} />
+          <meshPhongMaterial color="#ffffff" emissive="#d8d0f8" emissiveIntensity={0.3} transparent opacity={0.85} />
+        </mesh>
+        <mesh position={[0.52, 0.52, 0.16]}>
+          <sphereGeometry args={[0.18, 10, 10]} />
+          <meshPhongMaterial color="#ffffff" emissive="#d8d0f8" emissiveIntensity={0.3} transparent opacity={0.85} />
         </mesh>
 
-        {/* Ghost Wavy Skirt Ruffles (Hem) */}
-        {[-0.4, -0.15, 0.15, 0.4].map((offset, idx) => (
-          <mesh key={idx} position={[offset * 0.9, -0.36, 0.25]}>
-            <sphereGeometry args={[0.16, 12, 8]} />
-            <meshStandardMaterial
-              color="#f1edfd"
-              transparent
-              opacity={0.8}
-              roughness={0.3}
-            />
-          </mesh>
-        ))}
-
-        {/* Cute Dark Dot Eyes */}
-        <mesh position={[-0.18, 0.72, 0.48]}>
-          <sphereGeometry args={[0.07, 12, 12]} />
-          <meshStandardMaterial color="#2c2738" roughness={0.4} />
+        {/* Cute Dot Eyes */}
+        <mesh position={[-0.19, 0.78, 0.52]}>
+          <sphereGeometry args={[0.075, 10, 10]} />
+          <meshBasicMaterial color="#2c2538" />
         </mesh>
-        <mesh position={[0.18, 0.72, 0.48]}>
-          <sphereGeometry args={[0.07, 12, 12]} />
-          <meshStandardMaterial color="#2c2738" roughness={0.4} />
+        <mesh position={[0.19, 0.78, 0.52]}>
+          <sphereGeometry args={[0.075, 10, 10]} />
+          <meshBasicMaterial color="#2c2538" />
         </mesh>
 
-        {/* Tiny Sweet Pink Blush Marks */}
-        <mesh position={[-0.26, 0.58, 0.46]}>
-          <sphereGeometry args={[0.06, 8, 8]} />
-          <meshStandardMaterial color="#f7b7cb" roughness={0.6} />
+        {/* Pink Blush Marks */}
+        <mesh position={[-0.32, 0.64, 0.48]} scale={[1.2, 0.6, 0.4]}>
+          <sphereGeometry args={[0.09, 8, 8]} />
+          <meshBasicMaterial color="#ffa5bb" />
         </mesh>
-        <mesh position={[0.26, 0.58, 0.46]}>
-          <sphereGeometry args={[0.06, 8, 8]} />
-          <meshStandardMaterial color="#f7b7cb" roughness={0.6} />
+        <mesh position={[0.32, 0.64, 0.48]} scale={[1.2, 0.6, 0.4]}>
+          <sphereGeometry args={[0.09, 8, 8]} />
+          <meshBasicMaterial color="#ffa5bb" />
         </mesh>
 
-        {/* Soft Lavender Halo Light */}
+        {/* Candlelit Point Light */}
         <pointLight
           color="#b6a5e8"
-          intensity={isSelected ? 1.0 : 0.4}
-          distance={4}
+          intensity={isSelected ? 1.4 : 0.6}
+          distance={5}
         />
       </group>
 
       {/* ============================================================== */}
-      {/* 3. WEATHERED WOODEN SIGNPOST ON THE PLOT                       */}
-      {/* ============================================================== */}
-      <group position={[-1.2, 0, 0.8]}>
-        {/* Post */}
-        <mesh position={[0, 0.5, 0]}>
-          <cylinderGeometry args={[0.05, 0.06, 1.0, 8]} />
-          <meshStandardMaterial color="#554438" roughness={0.9} />
-        </mesh>
-        {/* Little Question Mark Sign */}
-        <mesh position={[0, 0.9, 0]}>
-          <boxGeometry args={[0.38, 0.38, 0.06]} />
-          <meshStandardMaterial color="#fffdf9" roughness={0.7} />
-        </mesh>
-      </group>
-
-      {/* ============================================================== */}
-      {/* 4. BILLBOARDED GHOST PLOT FIELD GUIDE SIGNPOST                 */}
+      {/* 3. BILLBOARDED GHOST PLOT FIELD GUIDE SIGNPOST                 */}
       {/* ============================================================== */}
       <Billboard
-        position={[0, 3.4, 0]}
+        position={[0, 3.6, 0]}
         follow={true}
         lockX={false}
         lockY={false}
         lockZ={false}
       >
-        {/* Background Card */}
         <mesh position={[0, 0, -0.02]}>
           <planeGeometry args={[Math.max(node.label.length * 0.38 + 1.2, 5.2), 1.4]} />
-          <meshStandardMaterial
-            color="#fffdf9"
-            roughness={0.7}
-          />
+          <meshStandardMaterial color="#fff9f0" roughness={0.7} />
         </mesh>
-        {/* Decorative Lilac Border */}
         <mesh position={[0, 0, -0.03]}>
           <planeGeometry args={[Math.max(node.label.length * 0.38 + 1.2, 5.2) + 0.15, 1.55]} />
           <meshStandardMaterial
-            color={isSelected ? "#9d87d9" : hovered ? "#b6a5e8" : "#d9d0e8"}
+            color={isSelected ? "#645592" : hovered ? "#b6a5e8" : "#cac4d0"}
             roughness={0.8}
           />
         </mesh>
 
-        {/* Status Tag */}
         <Text
           position={[0, 0.36, 0.02]}
           fontSize={0.28}
-          color="#9d87d9"
+          color="#645592"
           anchorX="center"
           anchorY="middle"
           letterSpacing={0.06}
           font={undefined}
         >
-          👻 FRIENDLY GHOST • UNCAPTURED LOT
+          👻 GHOST LOT • UNCAPTURED IN QUERY
         </Text>
 
-        {/* Title / Anchor Text */}
         <Text
           position={[0, -0.16, 0.02]}
           fontSize={0.46}
-          color="#2c2738"
+          color="#1d192b"
           anchorX="center"
           anchorY="middle"
           maxWidth={8.0}
